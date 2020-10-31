@@ -12,6 +12,7 @@ class Current extends Component {
             <View>
                 <Text>Hello</Text>
                 <Text>Hello, this is Hiwot.</Text>
+                <Text>World</Text>
             </View>
         )
     }
