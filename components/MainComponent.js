@@ -1,53 +1,3 @@
-// import React, { Component } from 'react';
-// import { View, Text, Platform} from 'react-native';
-// import { createStackNavigator } from 'react-navigation-stack';
-// import { createAppContainer } from 'react-navigation';
-// import { createDrawerNavigator } from 'react-navigation-drawer';
-// import Historical from './HistoricalData';
-
-// const HistoricalNavigator = createStackNavigator(
-//     {
-//         Historical: { screen: Historical} 
-//     },
-//     {
-//         // initialRouteName: 'Historical',
-//         defaultNavigationOptions: {
-//             headerStyle: {
-//                 backgroundColor: '#5637DD'
-//             }
-//         }
-//     }
-// );
-
-// const MainNavigator = createDrawerNavigator(
-//     {
-//         Historical: { screen: HistoricalNavigator},
-        
-//     },
-//     {
-//         drawerBackgroundColor: '#CEC8FF'
-//     }
-
-// )
-
-// const AppNavigator = createAppContainer(MainNavigator)
-
-// class Main extends Component {
-//     render(){
-//         return (
-//             <View style={{flex: 1, paddingTop: Platform.os === 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
-//                 <AppNavigator />
-//                 <Text>Hello World</Text>
-                
-//             </View>
-//         )
-//     }
-// }
-
-// export default Main;
-
-
-
 import React, { Component } from 'react';
 import { View, Text, Platform, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -56,6 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import Home from './HomeComponent.js';
 import Historical from './HistoricalData';
+import Current from './CurrentData';
 
 const HomeNavigator = createStackNavigator(
     {
@@ -85,7 +36,7 @@ const HistoricalNavigator = createStackNavigator(
             headerTintColor: '#ddd',
             headerTitleStyle: { fontWeight: 'bold' },
             headerLeft: <Icon
-                name='historical' type='font-awesome'
+                name='info' type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -93,6 +44,23 @@ const HistoricalNavigator = createStackNavigator(
     }
 );
 
+const CurrentNavigator = createStackNavigator(
+    {
+        Current: { screen: Current }
+    },
+    {
+        defaultNavigationOptions: ({ navigation }) => ({
+            headerStyle: { backgroundColor: '#333' },
+            headerTintColor: '#ddd',
+            headerTitleStyle: { fontWeight: 'bold' },
+            headerLeft: <Icon
+                name='list' type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
 
 const MainNavigator = createDrawerNavigator(
     {
@@ -106,17 +74,30 @@ const MainNavigator = createDrawerNavigator(
         },
         Historical: {
             screen: HistoricalNavigator,
-            // navigationOptions: {
-            //     drawerIcon: ({ tintColor }) => (
-            //         <Icon name='home' type='font-awesome' size={24} color={tintColor} />
-            //     )
-            // }
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon name='info' type='font-awesome' size={24} color={tintColor} />
+                )
+            }
+        },
+        Current: {
+            screen: CurrentNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon name='list' type='font-awesome' size={24} color={tintColor} />
+                )
+            },
         }
     },
     {
+        contentOptions: {
+            activeTintColor: 'rgb(222, 232, 242)',
+            inactiveTintColor: 'rgb(171, 181, 191)'
+        },
         drawerBackgroundColor: '#222'
     }
 );
+
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
@@ -124,11 +105,11 @@ class Main extends Component {
         return (
             <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight }}>
                 <AppNavigator />
-                <Text>Hello World!</Text>
             </View>
         );
     }
 }
+
 const styles = StyleSheet.create({
     stackIcon: {
         marginLeft: 15,
@@ -136,4 +117,5 @@ const styles = StyleSheet.create({
         fontSize: 25
     }
 });
+
 export default Main;
