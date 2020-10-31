@@ -22,8 +22,8 @@ class Historical extends Component {
 
     render() {
         const data = this.state.data.slice(0,7)
-        const date = (data.map(a => a.dateChecked)).map(a => a.slice(0,10)).map(a => a.slice(5,10))
-        const death = data.map(a => a.death)
+        const date = ((data.map(a => a.dateChecked)).map(a => a.slice(0,10)).map(a => a.slice(5,10))).reverse()
+        const death = (data.map(a => a.death)).reverse()
         // const death = strdeath.map(function (x) {
         //     return parseInt(x,10);
         // });
