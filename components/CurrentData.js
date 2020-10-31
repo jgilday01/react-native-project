@@ -11,6 +11,7 @@ class Current extends Component {
         return (
             <View>
                 <Text>Hello</Text>
+                <Text>World</Text>
             </View>
         )
     }
