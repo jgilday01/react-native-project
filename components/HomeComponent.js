@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Text, FlatList, View, Dimensions } from 'react-native';
 import { Card } from 'react-native-elements';
-
 import { LineChart } from "react-native-chart-kit";
-
 
 class Home extends Component {
     constructor(props) {
