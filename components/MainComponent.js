@@ -36,7 +36,7 @@ const HistoricalNavigator = createStackNavigator(
             headerTintColor: '#ddd',
             headerTitleStyle: { fontWeight: 'bold' },
             headerLeft: <Icon
-                name='info' type='font-awesome'
+                name='history' type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -76,7 +76,7 @@ const MainNavigator = createDrawerNavigator(
             screen: HistoricalNavigator,
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
-                    <Icon name='info' type='font-awesome' size={24} color={tintColor} />
+                    <Icon name='history' type='font-awesome' size={24} color={tintColor} />
                 )
             }
         },
