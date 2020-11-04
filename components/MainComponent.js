@@ -7,6 +7,7 @@ import { Icon } from 'react-native-elements';
 import Home from './HomeComponent.js';
 import Historical from './HistoricalData';
 import Current from './CurrentData';
+import HotSpot from './HotSpotsComponent';
 
 const HomeNavigator = createStackNavigator(
     {
@@ -62,6 +63,24 @@ const CurrentNavigator = createStackNavigator(
     }
 );
 
+const HotSpotNavigator = createStackNavigator(
+    {
+        HotSpot: { screen: HotSpot }
+    },
+    {
+        defaultNavigationOptions: ({ navigation }) => ({
+            headerStyle: { backgroundColor: '#333' },
+            headerTintColor: '#ddd',
+            headerTitleStyle: { fontWeight: 'bold' },
+            headerLeft: <Icon
+                name='fire' type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
+
 const MainNavigator = createDrawerNavigator(
     {
         Home: {
@@ -85,6 +104,14 @@ const MainNavigator = createDrawerNavigator(
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
                     <Icon name='list' type='font-awesome' size={24} color={tintColor} />
+                )
+            },
+        },
+        HotSpot: {
+            screen: HotSpotNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon name='fire' type='font-awesome' size={24} color={tintColor} />
                 )
             },
         }
