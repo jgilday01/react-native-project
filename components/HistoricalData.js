@@ -3,7 +3,7 @@ import { ActivityIndicator, View, Text, FlatList, SafeAreaView, Dimensions, Scro
 import { LineChart } from 'react-native-chart-kit';
 import STATES from '../shared/states';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { subDays } from 'date-fns';
+//import { subDays } from 'date-fns';
 
 class Historical extends Component {
     constructor(props){
