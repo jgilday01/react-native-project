@@ -58,9 +58,9 @@ class Current extends Component {
             ];
 
             return (
+                <ScrollView style={{ flex: 1, backgroundColor: '#222222' }}>
                 <>
                 <View style={{ flex: 1, borderRadius: 10, backgroundColor: "#333", padding: 15, margin: 15 }}>
-                      
                     <View style={styles.formRow}>
                         <Text style={styles.formLabel}>State</Text>
                         <Picker
@@ -111,8 +111,9 @@ class Current extends Component {
                         {`Total Test Results: ${this.state.items.totalTestResults}`}
                     </Text>
                 </View>
-                </>
-                <ScrollView style={styles.container}>
+               
+                {/* // <ScrollView style={styles.container}> */}
+                    
                     <View style={styles.container}>
                         <Text style={styles.chartHeader}>
                             {`Total Test Results: ${this.state.items.totalTestResults}`}
@@ -140,7 +141,10 @@ class Current extends Component {
                         <Text style={styles.whitetext}>In the ICU: {this.state.items.inIcuCurrently}</Text>
                         <Text style={styles.redtext}>Death Increrase: {this.state.items.deathIncrease}</Text>
                     </View>
+                    </>
                 </ScrollView>
+
+                
             )
         }
     }
@@ -149,7 +153,7 @@ class Current extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#222'
+      backgroundColor: '#222',
       paddingTop: 40,
       alignItems: "center"
     }, 
