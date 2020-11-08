@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, FlatList, View, Dimensions } from 'react-native';
+import { Text, FlatList, View, Dimensions, StyleSheet } from 'react-native';
 import { BarChart } from "react-native-chart-kit";
 
-class Home extends Component {
+class Hotspot extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,20 +45,20 @@ class Home extends Component {
         const renderDataItem = ({ item }) => {
             return (
                 <View style={{ flex: 1, borderRadius: 10, backgroundColor: "#333", padding: 15, margin: 15 }}>
-                    <Text style={{ color: "#e55", fontSize: 20, textAlign: "center" }}>Highest State: {item.state}</Text>
+                    <Text style={styles.redtext}>Highest State: {item.state}</Text>
                     <View style={{
                         height: 2, margin: 5,
                         backgroundColor: 'rgba(222, 222, 222 ,0.5)',
                         alignSelf: 'stretch'
                     }} />
-                    <Text style={{ color: "#eee", fontSize: 18, textAlign: "center" }}>Positive Increase: {item.positiveIncrease}</Text>
+                    <Text style={styles.whitetext}>Positive Increase: {item.positiveIncrease}</Text>
                     <View style={{
                         height: 2, margin: 5,
                         backgroundColor: 'rgba(222, 222, 222 ,0.5)',
                         alignSelf: 'stretch'
                     }} />
-                    <Text style={{ color: "#eee", fontSize: 18, textAlign: "center" }}>Positive: {item.positive}</Text>
-                    <Text style={{ color: "#eee", fontSize: 18, textAlign: "center" }}>Negative: {item.negative}</Text>
+                    <Text style={styles.whitetext}>Positive: {item.positive}</Text>
+                    <Text style={styles.whitetext}>Negative: {item.negative}</Text>
                 </View>
             )
         }
@@ -67,8 +67,8 @@ class Home extends Component {
             return <Text>Loading ... </Text>
         } else {
             return (
-                <View style={{ flex: 1, backgroundColor: '#222222' }}>
-                    <Text style={{ color: "#FEE", textAlign: "center", fontSize: 33, marginTop: 10 }}>High Positive Increase</Text>
+                <View style={styles.container}>
+                    <Text style={styles.chartHeader}>Highest Positive Increase</Text>
                     <BarChart
                         style={{ margin: 15, borderRadius: 5 }}
                         data={linedata}
@@ -94,4 +94,36 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#222222'
+    },
+    mainwrap: {
+        flex: 1,
+        borderRadius: 10,
+        backgroundColor: "#333",
+        padding: 15,
+        margin: 15
+    }, redtext: {
+        color: "#e55",
+        fontSize: 20,
+        textAlign: "center"
+    }, whitetext: {
+        color: "#eee",
+        fontSize: 18,
+        textAlign: "center"
+    }, simpleline: {
+        height: 2,
+        margin: 5,
+        backgroundColor: 'rgba(222, 222, 222 ,0.5)',
+        alignSelf: 'stretch'
+    }, chartHeader: {
+        color: "#f77",
+        textAlign: 'center',
+        fontSize: 30,
+        marginTop: 10
+    }
+});
+
+export default Hotspot;
