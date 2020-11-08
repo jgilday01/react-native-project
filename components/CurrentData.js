@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, Picker, Button } from 'react-native';
 import { PieChart } from "react-native-chart-kit";
 
 class Current extends Component {
@@ -7,19 +7,28 @@ class Current extends Component {
         super(props);
         this.state = {
             items: [],
-            loading: true
+            loading: true,
+            selectedState: '',
         };
     }
 
     static navigationOptions = { title: 'Current' }
 
     componentDidMount() {
-        fetch('https://api.covidtracking.com/v1/states/ak/current.json')
+        fetch(`https://api.covidtracking.com/v1/states/al/current.json`)
             .then(response => response.json())
             .then(result => {
                 this.setState({ loading: false, items: result });
             });
     }
+
+    updateData = () => {
+        fetch(`https://api.covidtracking.com/v1/states/${this.state.selectedState}/current.json`)
+            .then(response => response.json())
+            .then(result => {
+                this.setState({ loading: false, items: result });
+            });
+    };
 
     render() {
 
@@ -45,6 +54,37 @@ class Current extends Component {
             ];
 
             return (
+                <>
+                <View style={{ flex: 1, borderRadius: 10, backgroundColor: "#333", padding: 15, margin: 15 }}>
+                      
+                    <View style={styles.formRow}>
+                        <Text style={styles.formLabel}>State</Text>
+                        <Picker
+                            selectedValue={this.state.selectedState}
+                            style={styles.formItem}
+                            onValueChange={ itemValue => { 
+                                this.setState({selectedState: itemValue})}
+                            }
+                            mode='dropdown'
+                        >
+                            <Picker.Item label='---' value='empty' />
+                            {STATES.map((state,index) => {
+                                return <Picker.Item label={state.name} value={state.abbreviation.toLowerCase()} key={index} />
+                            })}
+                            
+                        </Picker>
+                    </View>
+                    <View style={styles.formRow}>
+                        <Button
+                            onPress={() => this.updateData()}
+                            title='Update'
+                            color='#5637DD'
+                            accessibilityLabel='Tap me to update data for selected state'
+                        />
+                    </View>
+                    
+                </View>
+                
                 <View style={{ flex: 1, backgroundColor: '#222222' }}>
                     <PieChart 
                         style={{  margin: 10 }}
@@ -67,9 +107,37 @@ class Current extends Component {
                         {`Total Test Results: ${this.state.items.totalTestResults}`}
                     </Text>
                 </View>
+                </>
             )
         }
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: 40,
+      alignItems: "center"
+    }, 
+    formRow: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: "#eee",
+        flex: 1, 
+        flexDirection: 'row',
+        margin: 7
+    },
+    formLabel: {
+        fontSize: 18,
+        color: "#eee",
+        flex: 1
+    },
+    formItem: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        color: "#eee",
+        flex: 2
+    }
+  });
 
 export default Current;
