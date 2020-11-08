@@ -3,7 +3,6 @@ import { ActivityIndicator, View, Text, FlatList, SafeAreaView, Dimensions, Scro
 import { LineChart } from 'react-native-chart-kit';
 import STATES from '../shared/states';
 import DateTimePicker from '@react-native-community/datetimepicker';
-//import { subDays } from 'date-fns';
 
 class Historical extends Component {
     constructor(props){
@@ -18,24 +17,17 @@ class Historical extends Component {
     }
     static navigationOptions = { title: 'Historical' };
 
-
-    formatDate = (date) => {
-        // const startDate = date.toISOString().split('T')[0].replace(/[^0-9]/g,'')
-        // const trailingDays = subDays(date,1).toISOString().split('T')[0].replace(/[^0-9]/g,'')
-        const trailingDays=subDays(date,7).toISOString()
-        // this.setState ({
-        //     // startDate: startDate,
-        //     endDate: trailingDays
-        // })
-        console.log(this.state.date)
-        console.log('end date is ' + trailingDays)
-        console.log(Date.parse(this.state.date))
-    };
+    componentDidMount() {
+        fetch('https://api.covidtracking.com/v1/states/al/daily.json')
+        .then(response => response.json())
+        .then(json => {this.setState({data: json})})
+        .catch((error) => console.error(error))
+        .finally(() => {this.setState({isLoading: false})});
+    }
 
     updateData = () => {
         fetch(`https://api.covidtracking.com/v1/states/${this.state.selectedState}/daily.json`)
         .then(response => response.json())
-        // .then(json => {this.setState({data: json})})
         .then(json => {this.setState({data: json.filter(state => Date.parse(state.dateChecked) <= Date.parse(this.state.date)) })})
         .catch((error) => console.error(error))
         .finally(() => {this.setState({isLoading: false})});
@@ -57,6 +49,7 @@ class Historical extends Component {
                                 onValueChange={ itemValue => { 
                                     this.setState({selectedState: itemValue})}
                                 }
+                                mode='dropdown'
                             >
                                 <Picker.Item label='---' value='empty' />
                                 {STATES.map((state,index) => {
@@ -142,18 +135,18 @@ const styles = StyleSheet.create({
         color: "#eee",
         flex: 1, 
         flexDirection: 'row',
-        margin: 20
+        margin: 7
     },
     formLabel: {
         fontSize: 18,
         color: "#eee",
-        flex: 2
+        flex: 1
     },
     formItem: {
         justifyContent: 'center',
         flexDirection: 'row',
         color: "#eee",
-        flex: 1
+        flex: 2
     }
   });
 
