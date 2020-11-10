@@ -96,7 +96,7 @@ class Historical extends Component {
                     <View>
                         {this.state.isLoading ? <ActivityIndicator /> : (
                             <>
-                                <Text style={styles.chartHeader}>State Trailing Data</Text>
+                                <Text style={styles.chartHeader}>{`${this.state.data[0].state} Trailing Death Data`}</Text>
 
                                 <LineChart
                                     style={{ margin: 15, borderRadius: 5 }}
@@ -114,7 +114,7 @@ class Historical extends Component {
                                     verticalLabelRotation={90}
                                     chartConfig={{
                                         color: (opacity = 1) => `rgba(250, 250, 250, ${opacity})`,
-                                        decimalPlaces: 1
+                                        decimalPlaces: 0
 
                                     }}
                                     // yAxisSuffix="k"

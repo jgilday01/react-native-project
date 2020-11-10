@@ -56,6 +56,9 @@ class Current extends Component {
                 }
             ];
 
+            const totalTest = this.state.items.totalTestResults;
+
+
             return (
                 <ScrollView style={{ flex: 1, backgroundColor: '#222222' }}>
                     <Animatable.View animation='shake' duration={2000} delay={1000}>
@@ -91,10 +94,9 @@ class Current extends Component {
                     </Animatable.View>
 
                     <Animatable.View animation='fadeInLeft' duration={2000} delay={1000}>
-
                         <View style={styles.container}>
                             <Text style={styles.chartHeader}>
-                                {`${this.state.items.state} Test Results: ${this.state.items.totalTestResults}`}
+                                {`${this.state.items.state} Test Results: ${totalTest}`}
                             </Text>
                             <PieChart
                                 style={{ margin: 15, borderRadius: 5 }}
