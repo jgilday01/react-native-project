@@ -17,25 +17,16 @@ class Current extends Component {
 
     static navigationOptions = { title: 'Current' }
 
-
     componentDidMount() {
-        /*
-        fetch(`https://api.covidtracking.com/v1/states/al/current.json`)
-            .then(response => response.json())
-            .then(result => {
-                this.setState({ loading: false, items: result });
-            });
-        */
         this.updateData();
     }
-
 
     updateData = () => {
         fetch(`https://api.covidtracking.com/v1/states/${this.state.selectedState}/current.json`)
             .then(response => response.json())
-            .then(result => {
-                this.setState({ loading: false, items: result });
-            });
+            .then(result => { this.setState({ items: result }) })
+            .catch((error) => console.error(error))
+            .finally(() => { this.setState({ loading: false }) });
     };
 
     render() {
@@ -68,8 +59,7 @@ class Current extends Component {
             return (
                 <ScrollView style={{ flex: 1, backgroundColor: '#222222' }}>
                     <Animatable.View animation='shake' duration={2000} delay={1000}>
-                        <View style={{ flex: 1, borderRadius: 10, backgroundColor: "#333", padding: 15, margin: 15 }}>
-
+                        <View style={styles.formWrap}>
                             <View style={styles.formRow}>
                                 <Text style={styles.formLabel}>State</Text>
                                 <Picker
@@ -100,11 +90,11 @@ class Current extends Component {
                         </View>
                     </Animatable.View>
 
-                    <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
+                    <Animatable.View animation='fadeInLeft' duration={2000} delay={1000}>
 
                         <View style={styles.container}>
                             <Text style={styles.chartHeader}>
-                                {`Total Test Results: ${this.state.items.totalTestResults}`}
+                                {`${this.state.items.state} Test Results: ${this.state.items.totalTestResults}`}
                             </Text>
                             <PieChart
                                 style={{ margin: 15, borderRadius: 5 }}
@@ -126,7 +116,7 @@ class Current extends Component {
                         </View>
                     </Animatable.View>
 
-                    <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
+                    <Animatable.View animation='fadeInRight' duration={2000} delay={1000}>
                         <View style={styles.mainwrap}>
                             <Text style={styles.whitetext}>Hospitalized: {this.state.items.hospitalizedCurrently}</Text>
                             <Text style={styles.whitetext}>In the ICU: {this.state.items.inIcuCurrently}</Text>

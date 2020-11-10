@@ -91,14 +91,6 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
-        Historical: {
-            screen: HistoricalNavigator,
-            navigationOptions: {
-                drawerIcon: ({ tintColor }) => (
-                    <Icon name='history' type='font-awesome' size={24} color={tintColor} />
-                )
-            }
-        },
         Current: {
             screen: CurrentNavigator,
             navigationOptions: {
@@ -106,6 +98,14 @@ const MainNavigator = createDrawerNavigator(
                     <Icon name='list' type='font-awesome' size={24} color={tintColor} />
                 )
             },
+        },
+        Historical: {
+            screen: HistoricalNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon name='history' type='font-awesome' size={24} color={tintColor} />
+                )
+            }
         },
         HotSpot: {
             screen: HotSpotNavigator,
