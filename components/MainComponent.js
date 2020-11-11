@@ -56,7 +56,7 @@ const CurrentNavigator = createStackNavigator(
             headerTintColor: '#ddd',
             headerTitleStyle: { fontWeight: 'bold' },
             headerLeft: <Icon
-                name='list' type='font-awesome'
+                name='calendar' type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -115,7 +115,7 @@ const MainNavigator = createDrawerNavigator(
             screen: CurrentNavigator,
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
-                    <Icon name='list' type='font-awesome' size={24} color={tintColor} />
+                    <Icon name='calendar' type='font-awesome' size={24} color={tintColor} />
                 )
             },
         },
