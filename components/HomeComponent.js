@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, FlatList, View, Dimensions, StyleSheet } from 'react-native';
 import { LineChart } from "react-native-chart-kit";
-import { ScrollView } from 'react-native-gesture-handler';
+import * as Animatable from 'react-native-animatable';
+import { styles } from '../shared/styles';
 
 
 class Home extends Component {
@@ -59,61 +60,35 @@ class Home extends Component {
         } else {
             return (
                 <View style={styles.container}>
-                    <Text style={styles.chartHeader}>US death stats</Text>
-                    <LineChart
-                        style={{ margin: 15, borderRadius: 5 }}
-                        data={linedata}
-                        width={Dimensions.get('window').width}
-                        verticalLabelRotation={90}
-                        chartConfig={{
-                            color: (opacity = 1) => `rgba(250, 250, 250, ${opacity})`,
-                            decimalPlaces: 1
+                    <Animatable.View animation='bounceInDown' duration={2000} delay={1000}>
+                        <Text style={styles.chartHeader}>US death stats</Text>
+                        <LineChart
+                            style={{ margin: 15, borderRadius: 5 }}
+                            data={linedata}
+                            width={Dimensions.get('window').width}
+                            verticalLabelRotation={90}
+                            chartConfig={{
+                                color: (opacity = 1) => `rgba(250, 250, 250, ${opacity})`,
+                                decimalPlaces: 1
 
-                        }}
-                        yAxisSuffix="k"
-                        height={325}
-                    />
-                    <FlatList
-                        data={this.state.items.slice(0, 1)}
-                        renderItem={renderDataItem}
-                        keyExtractor={item => item.date.toString()}
-                    />
+                            }}
+                            yAxisSuffix="k"
+                            height={325}
+                        />
+                    </Animatable.View>
+
+                    <Animatable.View animation='bounceInUp' duration={2000} delay={1000}>
+                        <FlatList
+                            data={this.state.items.slice(0, 1)}
+                            renderItem={renderDataItem}
+                            keyExtractor={item => item.date.toString()}
+                        />
+                    </Animatable.View>
+
                 </View>
             );
         }
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#222222'
-    },
-    mainwrap: {
-        flex: 1,
-        borderRadius: 10,
-        backgroundColor: "#333",
-        padding: 15,
-        margin: 15
-    }, redtext: {
-        color: "#e55",
-        fontSize: 20,
-        textAlign: "center"
-    }, whitetext: {
-        color: "#eee",
-        fontSize: 18,
-        textAlign: "center"
-    }, simpleline: {
-        height: 2,
-        margin: 5,
-        backgroundColor: 'rgba(222, 222, 222 ,0.5)',
-        alignSelf: 'stretch'
-    }, chartHeader: {
-        color: "#f77",
-        textAlign: 'center',
-        fontSize: 33,
-        marginTop: 10
-    }
-});
 
 export default Home;

@@ -40,10 +40,6 @@ export default STATES = [
         "abbreviation": "DC"
     },
     {
-        "name": "Federated States Of Micronesia",
-        "abbreviation": "FM"
-    },
-    {
         "name": "Florida",
         "abbreviation": "FL"
     },
@@ -90,10 +86,6 @@ export default STATES = [
     {
         "name": "Maine",
         "abbreviation": "ME"
-    },
-    {
-        "name": "Marshall Islands",
-        "abbreviation": "MH"
     },
     {
         "name": "Maryland",
@@ -170,10 +162,6 @@ export default STATES = [
     {
         "name": "Oregon",
         "abbreviation": "OR"
-    },
-    {
-        "name": "Palau",
-        "abbreviation": "PW"
     },
     {
         "name": "Pennsylvania",

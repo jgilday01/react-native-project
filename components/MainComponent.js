@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, Image, Platform, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+import SafeAreaView from 'react-native-safe-area-view';
 import Home from './HomeComponent.js';
 import Historical from './HistoricalData';
 import Current from './CurrentData';
@@ -55,7 +56,7 @@ const CurrentNavigator = createStackNavigator(
             headerTintColor: '#ddd',
             headerTitleStyle: { fontWeight: 'bold' },
             headerLeft: <Icon
-                name='list' type='font-awesome'
+                name='calendar' type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -81,6 +82,25 @@ const HotSpotNavigator = createStackNavigator(
     }
 );
 
+const CustomDrawerContentComponent = props => (
+    <ScrollView>
+        <SafeAreaView
+            style={styles.container}
+            forceInset={{ top: 'always', horizontal: 'never' }}>
+            <View style={styles.drawerHeader}>
+                <View style={{ flex: 1 }}>
+                    <Image source={require('../assets/COVID.png')} style={styles.drawerImage} />
+                </View>
+                <View style={{ flex: 2 }}>
+                    <Text style={styles.drawerHeaderText}>COVID19</Text>
+                    <Text style={styles.drawerHeaderText}>STATS</Text>
+                </View>
+            </View>
+            <DrawerItems {...props} />
+        </SafeAreaView>
+    </ScrollView>
+);
+
 const MainNavigator = createDrawerNavigator(
     {
         Home: {
@@ -91,6 +111,14 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
+        Current: {
+            screen: CurrentNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon name='calendar' type='font-awesome' size={24} color={tintColor} />
+                )
+            },
+        },
         Historical: {
             screen: HistoricalNavigator,
             navigationOptions: {
@@ -98,14 +126,6 @@ const MainNavigator = createDrawerNavigator(
                     <Icon name='history' type='font-awesome' size={24} color={tintColor} />
                 )
             }
-        },
-        Current: {
-            screen: CurrentNavigator,
-            navigationOptions: {
-                drawerIcon: ({ tintColor }) => (
-                    <Icon name='list' type='font-awesome' size={24} color={tintColor} />
-                )
-            },
         },
         HotSpot: {
             screen: HotSpotNavigator,
@@ -121,11 +141,13 @@ const MainNavigator = createDrawerNavigator(
             activeTintColor: 'rgb(222, 232, 242)',
             inactiveTintColor: 'rgb(171, 181, 191)'
         },
-        drawerBackgroundColor: '#222'
+        drawerBackgroundColor: '#222',
+        contentComponent: CustomDrawerContentComponent
     }
 );
 
 const AppNavigator = createAppContainer(MainNavigator);
+
 
 class Main extends Component {
     render() {
@@ -138,11 +160,32 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    drawerHeader: {
+        backgroundColor: '#333',
+        height: 140,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row'
+    },
+    drawerHeaderText: {
+        color: '#fff',
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+    drawerImage: {
+        margin: 10,
+        height: 50,
+        width: 50
+    },
     stackIcon: {
         marginLeft: 15,
         color: '#ddd',
         fontSize: 25
-    }
+    } 
 });
 
 export default Main;
