@@ -89,7 +89,7 @@ const CustomDrawerContentComponent = props => (
             forceInset={{ top: 'always', horizontal: 'never' }}>
             <View style={styles.drawerHeader}>
                 <View style={{ flex: 1 }}>
-                    <Image source={require('../assets/COVID.jpg')} style={styles.drawerImage} />
+                    <Image source={require('../assets/COVID.png')} style={styles.drawerImage} />
                 </View>
                 <View style={{ flex: 2 }}>
                     <Text style={styles.drawerHeaderText}>COVID19</Text>
