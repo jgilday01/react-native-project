@@ -122,7 +122,7 @@ class Current extends Component {
                         <View style={styles.mainwrap}>
                             <Text style={styles.whitetext}>Hospitalized: {this.state.items.hospitalizedCurrently}</Text>
                             <Text style={styles.whitetext}>In the ICU: {this.state.items.inIcuCurrently}</Text>
-                            <Text style={styles.redtext}>Death Increrase: {this.state.items.deathIncrease}</Text>
+                            <Text style={styles.redtext}>Death Increase: {this.state.items.deathIncrease}</Text>
                         </View>
                     </Animatable.View>
                 </ScrollView>
