@@ -4,7 +4,6 @@ import { LineChart } from "react-native-chart-kit";
 import * as Animatable from 'react-native-animatable';
 import { styles } from '../shared/styles';
 
-
 class Home extends Component {
     constructor(props) {
         super(props);
