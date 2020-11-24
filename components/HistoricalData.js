@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, View, Text, FlatList, SafeAreaView, Dimensions, ScrollView, Picker, Button } from 'react-native';
+import { ActivityIndicator, View, Text, Dimensions, ScrollView, Picker, Button } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import STATES from '../shared/states';
 import DateTimePicker from '@react-native-community/datetimepicker';

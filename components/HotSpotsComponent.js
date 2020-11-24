@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, FlatList, View, Dimensions, StyleSheet } from 'react-native';
+import { Text, FlatList, View, Dimensions } from 'react-native';
 import { BarChart } from "react-native-chart-kit";
 import * as Animatable from 'react-native-animatable';
 import { styles } from '../shared/styles';

@@ -74,7 +74,6 @@ class Current extends Component {
                                     }
                                     mode='dropdown'
                                 >
-                                    {/* <Picker.Item label='---' value='empty' /> */}
                                     {STATES.map((state, index) => {
                                         return <Picker.Item label={state.name} value={state.abbreviation.toLowerCase()} key={index} />
                                     })}
