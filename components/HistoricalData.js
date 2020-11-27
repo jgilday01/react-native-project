@@ -20,11 +20,7 @@ class Historical extends Component {
     static navigationOptions = { title: 'Historical' };
 
     componentDidMount() {
-        fetch('https://api.covidtracking.com/v1/states/al/daily.json')
-            .then(response => response.json())
-            .then(json => { this.setState({ data: json }) })
-            .catch((error) => console.error(error))
-            .finally(() => { this.setState({ isLoading: false }) });
+        this.updateData();
     }
 
     updateData = () => {
@@ -91,38 +87,37 @@ class Historical extends Component {
                     </View>
                 </Animatable.View>
 
-                <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
-                    <View>
-                        {this.state.isLoading ? <ActivityIndicator /> : (
-                            <>
-                                <Text style={styles.chartHeader}>{`${this.state.data[0].state} Trailing Death Data`}</Text>
+                {this.state.isLoading ? <ActivityIndicator /> : (
+                    <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
+                        <View>
 
-                                <LineChart
-                                    style={{ margin: 15, borderRadius: 5 }}
-                                    data={{
-                                        labels: (((this.state.data.slice(0, 7)).map(a => a.dateChecked)).map(a => a.slice(0, 10)).map(a => a.slice(5, 10))).reverse(),
-                                        datasets: [
-                                            {
-                                                data: ((this.state.data.slice(0, 7)).map(a => a.death)).reverse(),
-                                                color: (opacity = 1) => `rgba(250, 88, 88, ${opacity})`,
-                                                strokeWidth: 5// optional
-                                            }
-                                        ]
-                                    }}
-                                    width={Dimensions.get('window').width}
-                                    verticalLabelRotation={90}
-                                    chartConfig={{
-                                        color: (opacity = 1) => `rgba(250, 250, 250, ${opacity})`,
-                                        decimalPlaces: 0
+                            <Text style={styles.chartHeader}>{`${this.state.data[0].state} Trailing Death Data`}</Text>
 
-                                    }}
-                                    height={325}
-                                />
-                            </>
-                        )}
-                    </View>
-                </Animatable.View>
+                            <LineChart
+                                style={{ margin: 15, borderRadius: 5 }}
+                                data={{
+                                    labels: (((this.state.data.slice(0, 7)).map(a => a.dateChecked)).map(a => a.slice(0, 10)).map(a => a.slice(5, 10))).reverse(),
+                                    datasets: [
+                                        {
+                                            data: ((this.state.data.slice(0, 7)).map(a => a.death)).reverse(),
+                                            color: (opacity = 1) => `rgba(250, 88, 88, ${opacity})`,
+                                            strokeWidth: 5// optional
+                                        }
+                                    ]
+                                }}
+                                width={Dimensions.get('window').width}
+                                verticalLabelRotation={90}
+                                chartConfig={{
+                                    color: (opacity = 1) => `rgba(250, 250, 250, ${opacity})`,
+                                    decimalPlaces: 0
 
+                                }}
+                                height={325}
+                            />
+                        </View>
+                    </Animatable.View>
+                )}
+                
             </ScrollView>
         );
     }
