@@ -15,12 +15,16 @@ class Home extends Component {
 
     static navigationOptions = { title: 'Home' }
 
-    componentDidMount() {
+    updateData = () => {
         fetch('https://api.covidtracking.com/v1/us/daily.json')
             .then(response => response.json())
             .then(result => {
                 this.setState({ loading: false, items: result });
             });
+    }
+
+    componentDidMount() {
+        this.updateData();
     }
 
 
@@ -36,7 +40,7 @@ class Home extends Component {
                 {
                     data: points,
                     color: (opacity = 1) => `rgba(250, 88, 88, ${opacity})`,
-                    strokeWidth: 5// optional
+                    strokeWidth: 5 // optional
                 }
             ]
         };
