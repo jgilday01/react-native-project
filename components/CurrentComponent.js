@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions, Picker, Button } from 'react-native';
+import { ActivityIndicator, View, Text, Dimensions, Picker, Button } from 'react-native';
 import { PieChart } from "react-native-chart-kit";
 import { ScrollView } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
@@ -32,7 +32,12 @@ class Current extends Component {
     render() {
 
         if (this.state.loading) {
-            return <Text>Loading ... </Text>
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator style={{ margin: 20 }} />
+                    <Text style={{ color: '#EEE' }}>Loading</Text>
+                </View>
+            )
         } else {
 
             const tot = this.state.items.positive + this.state.items.negative

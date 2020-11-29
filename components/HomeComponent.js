@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, FlatList, View, Dimensions } from 'react-native';
+import { ActivityIndicator, Text, FlatList, View, Dimensions } from 'react-native';
 import { LineChart } from "react-native-chart-kit";
 import * as Animatable from 'react-native-animatable';
 import { styles } from '../shared/styles';
@@ -59,7 +59,12 @@ class Home extends Component {
         }
 
         if (this.state.loading) {
-            return <Text>Loading ... </Text>
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator style={{ margin: 20 }}/>
+                    <Text style={{ color: '#EEE'}}>Loading</Text>
+                </View>
+            )
         } else {
             return (
                 <View style={styles.container}>

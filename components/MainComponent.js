@@ -6,8 +6,8 @@ import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import Home from './HomeComponent.js';
-import Historical from './HistoricalData';
-import Current from './CurrentData';
+import Current from './CurrentComponent';
+import Historical from './HistoricalComponent';
 import HotSpot from './HotSpotsComponent';
 
 const HomeNavigator = createStackNavigator(

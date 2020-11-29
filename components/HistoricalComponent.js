@@ -14,7 +14,7 @@ class Historical extends Component {
             selectedState: 'al',
             date: new Date(),
             showCalendar: false,
-            isLoading: true
+            loading: true
         };
     }
     static navigationOptions = { title: 'Historical' };
@@ -28,7 +28,7 @@ class Historical extends Component {
             .then(response => response.json())
             .then(json => { this.setState({ data: json.filter(state => Date.parse(state.dateChecked) <= Date.parse(this.state.date)) }) })
             .catch((error) => console.error(error))
-            .finally(() => { this.setState({ isLoading: false }) });
+            .finally(() => { this.setState({ loading: false }) });
     };
 
     render() {
@@ -87,7 +87,7 @@ class Historical extends Component {
                     </View>
                 </Animatable.View>
 
-                {this.state.isLoading ? <ActivityIndicator /> : (
+                {this.state.loading ? <ActivityIndicator /> : (
                     <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
                         <View>
 
