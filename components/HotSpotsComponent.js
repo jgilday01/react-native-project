@@ -3,6 +3,7 @@ import { ActivityIndicator, Text, FlatList, View, Dimensions } from 'react-nativ
 import { BarChart } from "react-native-chart-kit";
 import * as Animatable from 'react-native-animatable';
 import { styles } from '../shared/styles';
+import Loading from './LoadingComponent';
 
 class Hotspot extends Component {
     constructor(props) {
@@ -70,10 +71,7 @@ class Hotspot extends Component {
 
         if (this.state.loading) {
             return (
-                <View style={styles.container}>
-                    <ActivityIndicator style={{ margin: 20 }} />
-                    <Text style={{ color: '#EEE' }}>Loading</Text>
-                </View>
+                <Loading />
             )
         } else {
             return (

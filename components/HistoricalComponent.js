@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, View, Text, Dimensions, ScrollView, Picker, Button } from 'react-native';
+import { View, Text, Dimensions, ScrollView, Picker, Button } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import STATES from '../shared/states';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Animatable from 'react-native-animatable';
 import { styles } from '../shared/styles';
+import Loading from './LoadingComponent';
 
 class Historical extends Component {
     constructor(props) {
@@ -87,7 +88,7 @@ class Historical extends Component {
                     </View>
                 </Animatable.View>
 
-                {this.state.loading ? <ActivityIndicator /> : (
+                {this.state.loading ? <Loading /> : (
                     <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
                         <View>
 

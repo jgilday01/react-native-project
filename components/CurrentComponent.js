@@ -4,6 +4,7 @@ import { PieChart } from "react-native-chart-kit";
 import { ScrollView } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
 import { styles } from '../shared/styles';
+import Loading from './LoadingComponent';
 
 class Current extends Component {
     constructor(props) {
@@ -33,10 +34,7 @@ class Current extends Component {
 
         if (this.state.loading) {
             return (
-                <View style={styles.container}>
-                    <ActivityIndicator style={{ margin: 20 }} />
-                    <Text style={{ color: '#EEE' }}>Loading</Text>
-                </View>
+                <Loading />
             )
         } else {
 
