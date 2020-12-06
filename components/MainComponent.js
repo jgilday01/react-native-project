@@ -111,6 +111,14 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
+        HotSpot: {
+            screen: HotSpotNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon name='fire' type='font-awesome' size={24} color={tintColor} />
+                )
+            },
+        },
         Current: {
             screen: CurrentNavigator,
             navigationOptions: {
@@ -126,14 +134,6 @@ const MainNavigator = createDrawerNavigator(
                     <Icon name='history' type='font-awesome' size={24} color={tintColor} />
                 )
             }
-        },
-        HotSpot: {
-            screen: HotSpotNavigator,
-            navigationOptions: {
-                drawerIcon: ({ tintColor }) => (
-                    <Icon name='fire' type='font-awesome' size={24} color={tintColor} />
-                )
-            },
         }
     },
     {
