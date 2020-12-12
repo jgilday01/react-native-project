@@ -76,6 +76,7 @@ class Hotspot extends Component {
         } else {
             return (
                 <View style={styles.container}>
+
                     <Animatable.View animation='flipInX' duration={2000} delay={1000}>
                         <Text style={styles.chartHeader}>Top 5 Positive Increases</Text>
                         <BarChart
@@ -101,6 +102,7 @@ class Hotspot extends Component {
                             keyExtractor={item => item.date.toString()}
                         />
                     </Animatable.View>
+                    
                 </View>
             );
         }

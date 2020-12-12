@@ -117,14 +117,6 @@ class Home extends Component {
 
                     </ScrollView>
 
-                    {/* <Animatable.View animation='bounceInUp' duration={2000} delay={1000}>
-                        <FlatList
-                            data={this.state.items.slice(0, 1)}
-                            renderItem={renderDataItem}
-                            keyExtractor={item => item.date.toString()}
-                        />
-                    </Animatable.View> */}
-
                 </View>
             );
         }
