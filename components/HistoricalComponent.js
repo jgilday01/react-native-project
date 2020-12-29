@@ -89,7 +89,7 @@ class Historical extends Component {
                 </Animatable.View>
 
                 {this.state.loading ? <Loading /> : (
-                    <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
+                    <Animatable.View animation='fadeInUp' duration={3000} delay={1000}>
                         <View>
 
                             <Text style={styles.chartHeader}>{`${this.state.data[0].state} Trailing Death Data`}</Text>

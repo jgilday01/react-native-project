@@ -65,7 +65,7 @@ class Current extends Component {
             return (
                 <ScrollView style={{ flex: 1, backgroundColor: '#222222' }}>
                     
-                    <Animatable.View animation='shake' duration={2000} delay={1000}>
+                    <Animatable.View animation='shake' duration={3000} delay={1000}>
                         <View style={styles.formWrap}>
                             <View style={styles.formRow}>
                                 <Text style={styles.formLabel}>State</Text>

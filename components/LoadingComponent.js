@@ -11,7 +11,6 @@ class Loading extends Component {
                 <Text style={{ color: '#EEE' }}>Loading</Text>
             </View>
         )
-
     }
 
 }

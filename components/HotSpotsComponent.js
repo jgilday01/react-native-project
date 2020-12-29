@@ -77,7 +77,7 @@ class Hotspot extends Component {
             return (
                 <View style={styles.container}>
 
-                    <Animatable.View animation='flipInX' duration={2000} delay={1000}>
+                    <Animatable.View animation='flipInX' duration={3000} delay={1000}>
                         <Text style={styles.chartHeader}>Top 5 Positive Increases</Text>
                         <BarChart
                             style={{ margin: 15, borderRadius: 5 }}
@@ -95,7 +95,7 @@ class Hotspot extends Component {
                         />
                     </Animatable.View>
 
-                    <Animatable.View animation='zoomIn' duration={2000} delay={1000}>
+                    <Animatable.View animation='zoomIn' duration={3000} delay={1000}>
                         <FlatList
                             data={this.state.items.slice(0, 1)}
                             renderItem={renderDataItem}

@@ -81,7 +81,7 @@ class Home extends Component {
                 <View style={styles.container}>
                     <ScrollView>
 
-                        <Animatable.View animation='bounceInUp' duration={2000} delay={1000}>
+                        <Animatable.View animation='bounceInUp' duration={3000} delay={1000}>
                             <Text style={styles.chartHeader}>US positive stats</Text>
                             <LineChart
                                 style={{ margin: 15, borderRadius: 5 }}
@@ -98,7 +98,7 @@ class Home extends Component {
                             />
                         </Animatable.View>
 
-                        <Animatable.View animation='bounceInDown' duration={2000} delay={1000}>
+                        <Animatable.View animation='bounceInDown' duration={3000} delay={1000}>
                             <Text style={styles.chartHeader}>US death stats</Text>
                             <LineChart
                                 style={{ margin: 15, borderRadius: 5 }}
