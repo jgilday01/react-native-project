@@ -1,4 +1,5 @@
 A Nucamp React Native project that displays visual data from a COVID API. 
+
 This app was created in collaboration with Hiwot and utilizes react-native-chart-kit for data visualization.
 
 🚀 Technologies Used
